@@ -10,6 +10,7 @@ namespace SimplCommerce.Module.Checkouts.Areas.Checkouts.ViewModels
         [Required(ErrorMessage = "The {0} field is required.")]
         public string ContactName { get; set; }
 
+        [Phone(ErrorMessage = "The {0} field is not a valid phone number.")]
         [Required(ErrorMessage = "The {0} field is required.")]
         public string Phone { get; set; }
 
