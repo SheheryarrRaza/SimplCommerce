@@ -1,0 +1,11 @@
+@model SimplCommerce.Module.PaymentMollie.ViewModels.MollieCheckoutForm
+
+<label>Mollie payment</label>
+<form asp-area="PaymentMollie" asp-controller="MolliePayment" asp-action="MollieCheckout" method="POST" id="checkout-payment" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="hidden" value="@Model.CheckoutId" name="checkoutId" />
+            <button type="submit" class="btn btn-order">@Localizer["Mollie payment"]</button>
+        </div>
+    </div>
+</form>

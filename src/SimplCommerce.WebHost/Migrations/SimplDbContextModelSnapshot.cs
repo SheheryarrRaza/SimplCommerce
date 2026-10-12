@@ -2802,6 +2802,15 @@ namespace SimplCommerce.WebHost.Migrations
                         },
                         new
                         {
+                            Id = "MolliePayment",
+                            AdditionalSettings = "{}",
+                            ConfigureUrl = "payments-mollie-config",
+                            IsEnabled = false,
+                            LandingViewComponentName = "MollieLanding",
+                            Name = "Mollie"
+                        },
+                        new
+                        {
                             Id = "NganLuong",
                             AdditionalSettings = "{\"IsSandbox\":true, \"MerchantId\": 47249, \"MerchantPassword\": \"e530745693dbde678f9da98a7c821a07\", \"ReceiverEmail\": \"nlqthien@gmail.com\"}",
                             ConfigureUrl = "payments-nganluong-config",
