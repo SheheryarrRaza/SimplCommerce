@@ -51,7 +51,6 @@ namespace SimplCommerce.Module.Reviews.Areas.Reviews.Controllers
                     Rating = model.Rating,
                     Title = model.Title,
                     Comment = model.Comment,
-                    ReviewerName = user.FullName,
                     EntityId = model.EntityId,
                     EntityTypeId = model.EntityTypeId,
                     UserId = user.Id,
@@ -96,7 +95,7 @@ namespace SimplCommerce.Module.Reviews.Areas.Reviews.Controllers
                     Title = x.Title,
                     Rating = x.Rating,
                     Comment = x.Comment,
-                    ReviewerName = x.ReviewerName,
+                    ReviewerName = x.User.FullName,
                     CreatedOn = x.CreatedOn,
                     Replies = x.Replies
                         .Where(r => r.Status == ReplyStatus.Approved)

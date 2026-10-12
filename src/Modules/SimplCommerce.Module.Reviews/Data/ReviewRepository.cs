@@ -20,7 +20,7 @@ namespace SimplCommerce.Module.Reviews.Data
                 {
                     EntityTypeId = r.EntityTypeId,
                     Id = r.Id,
-                    ReviewerName = r.ReviewerName,
+                    ReviewerName = r.User.FullName,
                     Rating = r.Rating,
                     Title = r.Title,
                     Comment = r.Comment,

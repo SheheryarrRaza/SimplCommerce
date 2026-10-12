@@ -42,7 +42,7 @@ namespace SimplCommerce.Module.Reviews.Areas.Reviews.Components
                     Title = x.Title,
                     Rating = x.Rating,
                     Comment = x.Comment,
-                    ReviewerName = x.ReviewerName,
+                    ReviewerName = x.User.FullName,
                     CreatedOn = x.CreatedOn,
                     Replies = x.Replies
                         .Where(r => r.Status == ReplyStatus.Approved)
