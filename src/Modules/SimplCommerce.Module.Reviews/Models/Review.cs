@@ -25,9 +25,6 @@ namespace SimplCommerce.Module.Reviews.Models
 
         public int Rating { get; set; }
 
-        [StringLength(450)]
-        public string ReviewerName { get; set; }
-
         public ReviewStatus Status { get; set; }
 
         public DateTimeOffset CreatedOn { get; set; }
