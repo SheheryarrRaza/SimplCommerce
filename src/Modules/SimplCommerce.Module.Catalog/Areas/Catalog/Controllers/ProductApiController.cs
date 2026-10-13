@@ -78,6 +78,13 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
             return Ok(products);
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> Search(string term)
+        {
+            var products = await _productService.SearchBySkuOrName(term);
+            return Ok(products.Select(x => new { x.Id, x.Name, x.Sku }));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
