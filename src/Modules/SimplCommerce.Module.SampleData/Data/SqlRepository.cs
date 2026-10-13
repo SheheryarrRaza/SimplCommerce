@@ -32,6 +32,11 @@ namespace SimplCommerce.Module.SampleData.Data
             }
         }
 
+        public void ClearTable(string tableName)
+        {
+            _dbContext.Database.ExecuteSqlRaw("DELETE FROM " + tableName);
+        }
+
         public IEnumerable<string> ParseCommand(IEnumerable<string> lines)
         {
             var sb = new StringBuilder();
