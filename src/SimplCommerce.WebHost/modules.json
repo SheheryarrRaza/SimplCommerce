@@ -90,6 +90,11 @@
     "version": "1.0.0"
   },
   {
+    "id": "SimplCommerce.Module.PaymentMollie",
+    "isBundledWithHost": true,
+    "version": "1.0.0"
+  },
+  {
     "id": "SimplCommerce.Module.PaymentMomo",
     "isBundledWithHost": true,
     "version": "1.0.0"
