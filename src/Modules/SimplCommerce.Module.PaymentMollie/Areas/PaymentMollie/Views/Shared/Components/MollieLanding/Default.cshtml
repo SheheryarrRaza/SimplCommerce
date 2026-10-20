@@ -1,0 +1,7 @@
+@model SimplCommerce.Module.PaymentMollie.Areas.PaymentMollie.ViewModels.MollieCheckoutForm
+
+<label>Mollie (iDEAL, Bancontact, cards)</label>
+<form asp-area="PaymentMollie" asp-controller="Mollie" asp-action="Checkout" method="POST">
+    <input name="checkoutId" value="@Model.CheckoutId" type="hidden" />
+    <button type="submit" class="btn btn-primary">Pay with Mollie</button>
+</form>

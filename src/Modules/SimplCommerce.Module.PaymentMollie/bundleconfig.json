@@ -1,0 +1,15 @@
+[
+  {
+    "outputFileName": "wwwroot/admin/paymentmollie.min.js",
+    "inputFiles": [
+      "wwwroot/admin/paymentMollie.module.js",
+      "wwwroot/admin/mollie/mollie-service.js",
+      "wwwroot/admin/mollie/mollie-config-form.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]
