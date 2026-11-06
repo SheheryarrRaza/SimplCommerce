@@ -122,7 +122,8 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
                 ThumbnailImageUrl = _mediaService.GetThumbnailUrl(product.ThumbnailImage),
                 BrandId = product.BrandId,
                 TaxClassId = product.TaxClassId,
-                StockTrackingIsEnabled = product.StockTrackingIsEnabled
+                StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                LowStockThreshold = product.LowStockThreshold
             };
 
             foreach (var productMedia in product.Medias.Where(x => x.Media.MediaType == MediaType.Image))
@@ -246,6 +247,15 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
                     query = query.Where(x => x.IsPublished == isPublished);
                 }
 
+                if (search.IsLowStock != null)
+                {
+                    bool isLowStock = search.IsLowStock;
+                    if (isLowStock)
+                    {
+                        query = query.Where(ProductLowStockRule.IsLowStock);
+                    }
+                }
+
                 if (search.CreatedOn != null)
                 {
                     if (search.CreatedOn.before != null)
@@ -274,6 +284,8 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
                     IsAllowToOrder = x.IsAllowToOrder,
                     IsCallForPricing = x.IsCallForPricing,
                     StockQuantity = x.StockQuantity,
+                    LowStockThreshold = x.LowStockThreshold,
+                    IsLowStock = x.StockTrackingIsEnabled && x.LowStockThreshold.HasValue && x.StockQuantity <= x.LowStockThreshold.Value,
                     CreatedOn = x.CreatedOn,
                     IsPublished = x.IsPublished
                 });
@@ -317,6 +329,7 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
                 BrandId = model.Product.BrandId,
                 TaxClassId = model.Product.TaxClassId,
                 StockTrackingIsEnabled = model.Product.StockTrackingIsEnabled,
+                LowStockThreshold = model.Product.LowStockThreshold,
                 HasOptions = model.Product.Variations.Any() ? true : false,
                 IsVisibleIndividually = true,
                 CreatedBy = currentUser,
@@ -437,6 +450,7 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.Controllers
             product.IsCallForPricing = model.Product.IsCallForPricing;
             product.IsAllowToOrder = model.Product.IsAllowToOrder;
             product.StockTrackingIsEnabled = model.Product.StockTrackingIsEnabled;
+            product.LowStockThreshold = model.Product.LowStockThreshold;
             product.LatestUpdatedBy = currentUser;
 
             if (isPriceChanged)

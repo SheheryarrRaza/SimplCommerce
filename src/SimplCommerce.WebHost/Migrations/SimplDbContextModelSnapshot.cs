@@ -395,6 +395,9 @@ namespace SimplCommerce.WebHost.Migrations
                     b.Property<DateTimeOffset>("LatestUpdatedOn")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<int?>("LowStockThreshold")
+                        .HasColumnType("int");
+
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
 
