@@ -23,5 +23,9 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels
         public bool IsAllowToOrder { get; set; }
 
         public int? StockQuantity { get; set; }
+
+        public int? LowStockThreshold { get; set; }
+
+        public bool IsLowStock { get; set; }
     }
 }

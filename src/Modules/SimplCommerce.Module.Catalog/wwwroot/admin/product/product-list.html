@@ -19,6 +19,7 @@
             <th class="text-center">{{::vm.translate.get('Is Allowed To Order')}}</th>
             <th class="text-center">{{::vm.translate.get('Is Called For Pricing')}}</th>
             <th class="text-right">{{::vm.translate.get('Stock Quantity')}}</th>
+            <th class="text-right">{{::vm.translate.get('Low Stock Level')}}</th>
             <th st-sort="IsPublished" class="text-center sortable">{{::vm.translate.get('Is Published')}}</th>
             <th st-sort="CreatedOn" class="text-center sortable">{{::vm.translate.get('Created On')}}</th>
             <th class="text-center">{{::vm.translate.get('Actions')}}</th>
@@ -53,6 +54,14 @@
             <th></th>
             <th>
                 <div class="form-group">
+                    <select class="form-control" st-search="IsLowStock" aria-label="{{::vm.translate.get('Low stock filter')}}">
+                        <option value="">{{::vm.translate.get('All')}}</option>
+                        <option value="true">{{::vm.translate.get('Low stock only')}}</option>
+                    </select>
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
                     <select class="form-control" st-search="IsPublished">
                         <option value="">{{::vm.translate.get('All')}}</option>
                         <option value="true">{{::vm.translate.get('Yes')}}</option>
@@ -64,7 +73,7 @@
             <th></th>
         </tr>
         <tr>
-            <th ng-show="!vm.isLoading" colspan="10">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
+            <th ng-show="!vm.isLoading" colspan="11">{{vm.tableStateRef.pagination.totalItemCount | number:0}} {{::vm.translate.get('records found')}}</th>
         </tr>
     </thead>
     <tbody ng-show="!vm.isLoading">
@@ -75,7 +84,11 @@
             <td class="text-center"><i ng-attr-class="{{product.isFeatured && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
             <td class="text-center"><i ng-attr-class="{{product.isAllowToOrder && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
             <td class="text-center"><i ng-attr-class="{{product.isCallForPricing && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
-            <td class="text-right">{{product.stockQuantity}}</td>
+            <td class="text-right">
+                {{product.stockQuantity}}
+                <span class="label label-warning" ng-if="product.isLowStock">{{::vm.translate.get('Low stock')}}</span>
+            </td>
+            <td class="text-right">{{product.lowStockThreshold}}</td>
             <td class="text-center"><i ng-attr-class="{{product.isPublished && 'fa fa-circle' || 'fa fa-circle-o'}}"></i></td>
             <td class="text-center">{{product.createdOn | date:'medium'}}</td>
             <td class="text-center">
@@ -91,12 +104,12 @@
     </tbody>
     <tbody ng-show="vm.isLoading">
         <tr>
-            <td colspan="10" class="text-center">Loading ... </td>
+            <td colspan="11" class="text-center">Loading ... </td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
-            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="10"></td>
+            <td class="text-center" st-pagination="" st-items-by-page="50" st-displayed-pages="10" colspan="11"></td>
         </tr>
     </tfoot>
 </table>

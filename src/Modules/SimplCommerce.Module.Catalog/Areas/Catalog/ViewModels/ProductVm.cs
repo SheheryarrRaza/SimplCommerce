@@ -58,6 +58,9 @@ namespace SimplCommerce.Module.Catalog.Areas.Catalog.ViewModels
 
         public bool StockTrackingIsEnabled { get; set; }
 
+        [Range(0, int.MaxValue)]
+        public int? LowStockThreshold { get; set; }
+
         public IList<long> CategoryIds { get; set; } = new List<long>();
 
         public IList<ProductAttributeVm> Attributes { get; set; } = new List<ProductAttributeVm>();

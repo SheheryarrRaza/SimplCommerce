@@ -39,6 +39,8 @@ namespace SimplCommerce.Module.Catalog.Models
 
         public int StockQuantity { get; set; }
 
+        public int? LowStockThreshold { get; set; }
+
         [StringLength(450)]
         public string Sku { get; set; }
 
@@ -140,6 +142,7 @@ namespace SimplCommerce.Module.Catalog.Models
             product.IsAllowToOrder = IsAllowToOrder;
             product.IsCallForPricing = IsCallForPricing;
             product.StockQuantity = StockQuantity;
+            product.LowStockThreshold = LowStockThreshold;
             product.BrandId = BrandId;
             product.VendorId = VendorId;
             product.TaxClassId = TaxClassId;
